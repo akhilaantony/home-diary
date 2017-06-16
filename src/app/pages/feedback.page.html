@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ appName }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <strong ion-text color="primary">Feedback Form</strong>
+   <form (ngSubmit)="submitForm()" *ngIf="questions">
+     <ion-item *ngFor="let item of questions; let i = index" >
+        <ion-label>{{item.title}}</ion-label>
+        <ion-input *ngIf="item.answer_type == 'text'" [(ngModel)]="answers[i]" name="text" type="text" value=""></ion-input>
+
+        <ion-select *ngIf="item.answer_type == 'select'" [(ngModel)]="answers[i]" name="score">
+          <ion-option *ngFor="let option of item.options" value="{{option}}">{{option}}</ion-option>
+        </ion-select>
+
+        <ion-select  *ngIf="item.answer_type == 'radio'" [(ngModel)]="answers[i]" name="radio">
+          <ion-option *ngFor="let radio of item.radio_options" value="{{radio}}">{{radio}}</ion-option>
+        </ion-select>
+     </ion-item>
+
+      <button ion-button type="submit" block> SUBMIT </button>
+
+
+     
+   </form>
+
+</ion-content>
+

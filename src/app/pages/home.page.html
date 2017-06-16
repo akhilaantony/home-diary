@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ appName }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!--<ion-icon name="ionic" color="primary"></ion-icon>-->
+  <strong ion-text color="primary">Registration Form</strong>
+   <form (ngSubmit)="logForm()">
+      <!--<ion-item>
+        <ion-label>Registration Form</ion-label>
+        <ion-input type="text" [(ngModel)]="todo.title" name="title"></ion-input>
+      </ion-item>-->
+      <ion-item>
+        <ion-label>Patient ID</ion-label>
+        <ion-textarea [(ngModel)]="todo.patientId" name="patientId" maxLength='15'></ion-textarea>
+      </ion-item>
+       <!--<ion-item>
+        <ion-label>Phone No.</ion-label>
+        <ion-textarea (click)="validation()" [(ngModel)]="todo.phoneNo" name="phoneNo" maxLength='12'></ion-textarea>
+      </ion-item>-->
+       <ion-item>
+        <ion-label>Start Date Of Medication</ion-label>
+        <!--<ion-textarea [(ngModel)]="todo.startDate" name="startDate"></ion-textarea>-->
+         <ion-datetime displayFormat="DD-MM-YYYY " [(ngModel)]="todo.startDate" name="startDate"></ion-datetime>
+      </ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-label>No.of days of medication</ion-label>
+          <ion-select [(ngModel)]="todo.numOfDays" name="numOfDays">
+            <ion-option  *ngFor="let num of numOfDays;let i = index" value="{{i+1}}">{{i+1}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      
+      <button ion-button type="submit" block> REGISTER </button>
+    </form>
+
+</ion-content>
+

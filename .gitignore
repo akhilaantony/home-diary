@@ -1,0 +1,9 @@
+/cordova/platforms/*/
+/cordova/plugins/*/
+/cordova/www/
+/cordova/node_modules/
+/dist/
+/node_modules/
+/typings/
+/.idea/
+/.vscode/
