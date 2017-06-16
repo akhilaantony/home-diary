@@ -28,17 +28,29 @@ export class HomePage {
   }
 
   ngOnInit() {
-    // this.http.get('http://192.168.5.157/homeDiary/webservices?procedure=initializeApp').map(res => res.json()).subscribe(data => {
-        
-    // });
-    console.log(this.device.uuid);
+    let obj = {
+      "deviceId": '75685687'
+      // "deviceId": this.device.uuid
+    }
+    this.http.post('http://192.168.5.157/homeDiary/webservices?procedure=initializeApp', obj).map(res => res.json()).subscribe(data => {
+    localStorage.setItem('authToken', data.authToken);
+  });
+    // console.log(this.device.uuid);
+
   }
   
   logForm() {
     console.log(this.todo);
     // localStorage.setItem('startDate', this.todo.startDate);
-    
-    let toast = this.toastCtrl.create({
+    let obj={
+      "deviceId": '75685687',
+      "authToken": localStorage.getItem('authToken'),
+      "patientId":this.todo.patientId,
+      "medicationDays":this.todo.numOfDays,
+      "dateofMedication":this.todo.startDate
+    }
+    this.http.post('http://192.168.5.157/homeDiary/webservices?procedure=addPatient', obj).map(res => res.json()).subscribe(data => {
+     let toast = this.toastCtrl.create({
       message: 'Registered successfully',
       duration: 3000,
       showCloseButton: true,
@@ -48,6 +60,8 @@ export class HomePage {
 
     toast.present();
     this.navToFeedback();
+  });
+   
   }
 
   navToFeedback() {

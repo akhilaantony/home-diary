@@ -26,10 +26,8 @@ export class FeedbackPage {
   ngOnInit() {
     this.http.get('src/api/form_day_1.json').map(res => res.json()).subscribe(data => {
         this.questions = data.questions;
-        let n = data.questions.length;
-        // for(let i=0;i<n;i++) {
-        //   this.answers.push({});
-        // }
+        // let n = data.questions.length;
+       
     });
   }
   
